@@ -104,7 +104,7 @@ namespace ServerTweaksUI
             string content = File.ReadAllText(configJson);
             var jsonObject = JObject.Parse(content);
 
-            valueGCT.Checked = jsonObject["hideout"]["removeGlobalConstructionTime"]?.ToObject<bool>() ?? true;
+            valueGCT.Checked = jsonObject["hideout"]["removeGlobalConstructionTime"]?.ToObject<bool>() ?? false;
             valueRCR.Checked = jsonObject["hideout"]["RemoveRestrictions"]?.ToObject<bool>() ?? false;
 
             valueEED.Checked = jsonObject["raids"]["EnableExtendedDuration"]?.ToObject<bool>() ?? false;
@@ -114,7 +114,7 @@ namespace ServerTweaksUI
 
             valueWA.Checked = jsonObject["inventory"]["WeightedArmbands"]?.ToObject<bool>() ?? false;
             valueLBM.Checked = jsonObject["inventory"]["LootableMelee"]?.ToObject<bool>() ?? false;
-            valueMK.Checked = jsonObject["inventory"]["masterKey"]?.ToObject<bool>() ?? true;
+            valueMK.Checked = jsonObject["inventory"]["masterKey"]?.ToObject<bool>() ?? false;
 
             listDeathItems.SelectedIndex = 0;
             valueLIOD.Checked = jsonObject["inventory"]["loseItemsOnDeath"]["Headgear"]?.ToObject<bool>() ?? true;
