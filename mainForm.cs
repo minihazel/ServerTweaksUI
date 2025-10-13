@@ -123,7 +123,7 @@ namespace ServerTweaksUI
             valueWSIRH.Value = jsonObject["insurance"]["WhenShouldInsuranceReturnInHours"]?.ToObject<decimal>() ?? 0;
         }
 
-        private void mainForm_Load(object sender, EventArgs e)
+        private void initializeApp()
         {
             configJson = Path.Join(currentEnv, "config.jsonc");
             bool fileExists = File.Exists(configJson);
@@ -142,11 +142,67 @@ namespace ServerTweaksUI
                 lostOnDeathItems.Add("specialItems", true);
 
                 loadConfig();
-
                 return;
             }
+            else
+            {
+                var config = new ModConfig
+                {
+                    Hideout = new HideoutConfig
+                    {
+                        RemoveGlobalConstructionTime = false,
+                        RemoveRestrictions = false
+                    },
+                    Raids = new RaidsConfig
+                    {
+                        EnableExtendedDuration = false,
+                        ExtraExfilTime = 40,
+                        UsePaidCoopExfil = false,
+                        CostForCoopExfil = 10000
+                    },
+                    Inventory = new InventoryConfig
+                    {
+                        WeightedArmbands = false,
+                        ArmbandWeight = -60,
+                        LootableMelee = false,
+                        MasterKey = false,
+                        LoseItemsOnDeath = new LoseItemsOnDeathConfig
+                        {
+                            Headgear = true,
+                            Body = true,
+                            Guns = true,
+                            Knife = true,
+                            Container = true,
+                            QuestItems = true,
+                            SpecialItems = true
+                        }
+                    },
+                    Traders = new TradersConfig
+                    {
+                        AllClothingIsFree = false
+                    },
+                    Fleamarket = new FleamarketConfig
+                    {
+                        UnlockFleaAtLevel1 = false
+                    },
+                    Insurance = new InsuranceConfig
+                    {
+                        InsuranceOnLabs = false,
+                        GuaranteedReturnPrapor = false,
+                        GuaranteedReturnTherapist = false,
+                        InsuranceMaxStorageTimeInHours = 144,
+                        WhenShouldInsuranceReturnInHours = 0
+                    }
+                };
 
-            errorPanel.BringToFront();
+                config.SaveToFile(configJson);
+                initializeApp();
+            }
+        }
+
+        private void mainForm_Load(object sender, EventArgs e)
+        {
+            initializeApp();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -333,7 +389,7 @@ namespace ServerTweaksUI
         {
             if (listDeathItems.SelectedItem == null) return;
 
-            string currentlyselected = listDeathItems.SelectedItem.ToString();
+            string? currentlyselected = listDeathItems.SelectedItem.ToString();
             if (currentlyselected == "Quest Items")
             {
                 valueLIOD.Checked = lostOnDeathItems["questItems"];
@@ -351,6 +407,24 @@ namespace ServerTweaksUI
         private void valueGCT_CheckedChanged(object sender, EventArgs e)
         {
             saveToConfig();
+        }
+
+        private void btnModsLink_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(currentEnv))
+            {
+                MessageBox.Show("Hmm, it appears that the folder this app is in doesn\'t exist. Please restart the app and try again.", Text, MessageBoxButtons.OK);
+                return;
+            }
+
+            try
+            {
+                Process.Start("explorer.exe", currentEnv);
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
     }
 }

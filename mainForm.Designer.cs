@@ -125,6 +125,7 @@
             btnModsLink.Text = "Placeholder";
             btnModsLink.TextAlign = ContentAlignment.MiddleLeft;
             btnModsLink.UseVisualStyleBackColor = true;
+            btnModsLink.Click += btnModsLink_Click;
             // 
             // btnExit
             // 
