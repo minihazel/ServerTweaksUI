@@ -272,9 +272,9 @@
             tabPage2.Controls.Add(valueCCEPE);
             tabPage2.Controls.Add(label5);
             tabPage2.Controls.Add(label6);
-            tabPage2.Location = new Point(4, 27);
+            tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
-            tabPage2.Size = new Size(800, 399);
+            tabPage2.Size = new Size(800, 402);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Raids";
             // 
@@ -284,15 +284,16 @@
             valueERD.BackColor = Color.FromArgb(24, 24, 28);
             valueERD.BorderStyle = BorderStyle.FixedSingle;
             valueERD.ForeColor = Color.Silver;
-            valueERD.Increment = new decimal(new int[] { 1000, 0, 0, 0 });
+            valueERD.Increment = new decimal(new int[] { 5, 0, 0, 0 });
             valueERD.Location = new Point(445, 59);
             valueERD.Maximum = new decimal(new int[] { 604800, 0, 0, 0 });
-            valueERD.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            valueERD.Minimum = new decimal(new int[] { 5, 0, 0, 0 });
             valueERD.Name = "valueERD";
             valueERD.Size = new Size(100, 25);
             valueERD.TabIndex = 13;
             valueERD.ThousandsSeparator = true;
             valueERD.Value = new decimal(new int[] { 40, 0, 0, 0 });
+            valueERD.ValueChanged += valueERD_ValueChanged;
             // 
             // valueEED
             // 
@@ -758,9 +759,9 @@
             label20.Font = new Font("Bahnschrift Light", 14F);
             label20.Location = new Point(3, 95);
             label20.Name = "label20";
-            label20.Size = new Size(825, 103);
+            label20.Size = new Size(825, 185);
             label20.TabIndex = 0;
-            label20.Text = "Could not detect `ServerTweaks/config.jsonc`\r\n\r\nDid you place this app in `mods/ServerTweaks`?";
+            label20.Text = "ServerTweaks is not in the `user / mods` folder.\r\n\r\nPlease move `ServerTweaksUI.exe` into the `user / mods / ServerTweaks` folder.";
             label20.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // mainForm
@@ -769,8 +770,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(24, 24, 28);
             ClientSize = new Size(838, 548);
-            Controls.Add(panel1);
             Controls.Add(sidePanel);
+            Controls.Add(panel1);
             Controls.Add(errorPanel);
             Font = new Font("Bahnschrift", 11F);
             ForeColor = Color.Silver;

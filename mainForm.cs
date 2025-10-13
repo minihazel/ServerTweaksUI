@@ -6,7 +6,7 @@ namespace ServerTweaksUI
 {
     public partial class mainForm : Form
     {
-        public string? currentEnv = Environment.CurrentDirectory;
+        public string? currentEnv = AppDomain.CurrentDomain.BaseDirectory;
         public string? configJson = null;
         public string? configContent = null;
         public string? configObj = null;
@@ -130,78 +130,93 @@ namespace ServerTweaksUI
 
         private void initializeApp()
         {
-            configJson = Path.Join(currentEnv, "config.jsonc");
-            bool fileExists = File.Exists(configJson);
-            if (fileExists)
+            DirectoryInfo? appFolder = new DirectoryInfo(currentEnv); // ServerTweaks
+            DirectoryInfo? modsFolder = appFolder?.Parent; // mods
+            DirectoryInfo? userFolder = modsFolder?.Parent; // user
+            DirectoryInfo? sptFolder = userFolder?.Parent; // SPT
+
+            if (modsFolder?.Name == "mods" &&
+                    userFolder?.Name == "user" &&
+                    sptFolder != null)
             {
-                string fullPath = Path.GetFullPath(configJson);
-                btnModsLink.Tag = fullPath;
-                btnModsLink.Text = "SPT/user/mods/ServerTweaks (click to open)";
+                configJson = Path.Join(currentEnv, "config.jsonc");
+                bool fileExists = File.Exists(configJson);
+                if (fileExists)
+                {
+                    string fullPath = Path.GetFullPath(configJson);
+                    btnModsLink.Tag = fullPath;
+                    btnModsLink.Text = "SPT/user/mods/ServerTweaks (click to open)";
 
-                lostOnDeathItems.Add("Headgear", true);
-                lostOnDeathItems.Add("Body", true);
-                lostOnDeathItems.Add("Guns", true);
-                lostOnDeathItems.Add("Knife", true);
-                lostOnDeathItems.Add("Container", true);
-                lostOnDeathItems.Add("questItems", true);
-                lostOnDeathItems.Add("specialItems", true);
+                    lostOnDeathItems.Add("Headgear", true);
+                    lostOnDeathItems.Add("Body", true);
+                    lostOnDeathItems.Add("Guns", true);
+                    lostOnDeathItems.Add("Knife", true);
+                    lostOnDeathItems.Add("Container", true);
+                    lostOnDeathItems.Add("questItems", true);
+                    lostOnDeathItems.Add("specialItems", true);
 
-                loadConfig();
-                return;
+                    loadConfig();
+                    return;
+                }
+                else
+                {
+                    var config = new ModConfig
+                    {
+                        Hideout = new HideoutConfig
+                        {
+                            RemoveGlobalConstructionTime = false,
+                            RemoveRestrictions = false
+                        },
+                        Raids = new RaidsConfig
+                        {
+                            EnableExtendedDuration = false,
+                            ExtraExfilTime = 40,
+                            UsePaidCoopExfil = false,
+                            CostForCoopExfil = 10000
+                        },
+                        Inventory = new InventoryConfig
+                        {
+                            WeightedArmbands = false,
+                            ArmbandWeight = -60,
+                            LootableMelee = false,
+                            MasterKey = false,
+                            LoseItemsOnDeath = new LoseItemsOnDeathConfig
+                            {
+                                Headgear = true,
+                                Body = true,
+                                Guns = true,
+                                Knife = true,
+                                Container = true,
+                                QuestItems = true,
+                                SpecialItems = true
+                            }
+                        },
+                        Traders = new TradersConfig
+                        {
+                            AllClothingIsFree = false
+                        },
+                        Fleamarket = new FleamarketConfig
+                        {
+                            UnlockFleaAtLevel1 = false
+                        },
+                        Insurance = new InsuranceConfig
+                        {
+                            InsuranceOnLabs = false,
+                            GuaranteedReturnPrapor = false,
+                            GuaranteedReturnTherapist = false,
+                            InsuranceMaxStorageTimeInHours = 144,
+                            WhenShouldInsuranceReturnInHours = 0
+                        }
+                    };
+
+                    config.SaveToFile(configJson);
+                    initializeApp();
+                }
             }
             else
             {
-                var config = new ModConfig
-                {
-                    Hideout = new HideoutConfig
-                    {
-                        RemoveGlobalConstructionTime = false,
-                        RemoveRestrictions = false
-                    },
-                    Raids = new RaidsConfig
-                    {
-                        EnableExtendedDuration = false,
-                        ExtraExfilTime = 40,
-                        UsePaidCoopExfil = false,
-                        CostForCoopExfil = 10000
-                    },
-                    Inventory = new InventoryConfig
-                    {
-                        WeightedArmbands = false,
-                        ArmbandWeight = -60,
-                        LootableMelee = false,
-                        MasterKey = false,
-                        LoseItemsOnDeath = new LoseItemsOnDeathConfig
-                        {
-                            Headgear = true,
-                            Body = true,
-                            Guns = true,
-                            Knife = true,
-                            Container = true,
-                            QuestItems = true,
-                            SpecialItems = true
-                        }
-                    },
-                    Traders = new TradersConfig
-                    {
-                        AllClothingIsFree = false
-                    },
-                    Fleamarket = new FleamarketConfig
-                    {
-                        UnlockFleaAtLevel1 = false
-                    },
-                    Insurance = new InsuranceConfig
-                    {
-                        InsuranceOnLabs = false,
-                        GuaranteedReturnPrapor = false,
-                        GuaranteedReturnTherapist = false,
-                        InsuranceMaxStorageTimeInHours = 144,
-                        WhenShouldInsuranceReturnInHours = 0
-                    }
-                };
-
-                config.SaveToFile(configJson);
-                initializeApp();
+                errorPanel.BringToFront();
+                return;
             }
         }
 
@@ -422,6 +437,11 @@ namespace ServerTweaksUI
         }
 
         private void valueEED_CheckedChanged(object sender, EventArgs e)
+        {
+            saveToConfig();
+        }
+
+        private void valueERD_ValueChanged(object sender, EventArgs e)
         {
             saveToConfig();
         }
