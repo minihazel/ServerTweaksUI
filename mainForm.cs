@@ -26,7 +26,10 @@ namespace ServerTweaksUI
             bool gctValue = valueGCT.Checked;
 
             bool removeRestrictions = valueRCR.Checked;
-            int extraExfilTime = int.TryParse(valueERD.Text, out int eftParsed) ? eftParsed : 0;
+
+            bool extendedRaid = valueEED.Checked;
+            decimal extendedDuration = valueERD.Value;
+            int extendedRaidDuration = Convert.ToInt32(extendedDuration);
 
             decimal cost = valueCPCE.Value;
             int costCoopExfil = Convert.ToInt32(cost);
@@ -57,7 +60,8 @@ namespace ServerTweaksUI
             jsonObject["hideout"]["removeGlobalConstructionTime"] = gctValue;
             jsonObject["hideout"]["RemoveRestrictions"] = removeRestrictions;
 
-            jsonObject["raids"]["ExtraExfilTime"] = extraExfilTime;
+            jsonObject["raids"]["EnableExtendedDuration"] = extendedRaid;
+            jsonObject["raids"]["ExtraExfilTime"] = extendedRaidDuration;
             jsonObject["raids"]["UsePaidCoopExfil"] = usePaidExfil;
             jsonObject["raids"]["CostForCoopExfil"] = costCoopExfil;
 
@@ -103,6 +107,7 @@ namespace ServerTweaksUI
             valueGCT.Checked = jsonObject["hideout"]["removeGlobalConstructionTime"]?.ToObject<bool>() ?? true;
             valueRCR.Checked = jsonObject["hideout"]["RemoveRestrictions"]?.ToObject<bool>() ?? false;
 
+            valueEED.Checked = jsonObject["raids"]["EnableExtendedDuration"]?.ToObject<bool>() ?? false;
             valueERD.Text = jsonObject["raids"]["ExtraExfilTime"]?.ToString() ?? "-60";
             valueCCEPE.Checked = jsonObject["raids"]["UsePaidCoopExfil"]?.ToObject<bool>() ?? false;
             valueCPCE.Value = jsonObject["raids"]["CostForCoopExfil"]?.ToObject<decimal>() ?? 10000;
@@ -236,17 +241,6 @@ namespace ServerTweaksUI
                 if (e.KeyChar == '-' && !valueERD.Text.Contains('-'))
                     return;
                 e.Handled = true;
-            }
-        }
-
-        private void valueERD_TextChanged(object sender, EventArgs e)
-        {
-            string filteredInput = new string(valueERD.Text.Where(c => char.IsDigit(c) || c == '-').ToArray());
-            if (valueERD.Text != filteredInput)
-            {
-                int cursorPosition = valueERD.SelectionStart;
-                valueERD.Text = filteredInput;
-                valueERD.SelectionStart = Math.Min(cursorPosition, valueERD.Text.Length);
             }
         }
 
@@ -425,6 +419,11 @@ namespace ServerTweaksUI
             {
                 return;
             }
+        }
+
+        private void valueEED_CheckedChanged(object sender, EventArgs e)
+        {
+            saveToConfig();
         }
     }
 }

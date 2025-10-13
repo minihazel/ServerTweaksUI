@@ -43,9 +43,11 @@
             label4 = new Label();
             label3 = new Label();
             tabPage2 = new TabPage();
+            valueERD = new NumericUpDown();
+            valueEED = new CheckBox();
+            label21 = new Label();
             valueCPCE = new NumericUpDown();
             label7 = new Label();
-            valueERD = new TextBox();
             valueCCEPE = new CheckBox();
             label5 = new Label();
             label6 = new Label();
@@ -88,6 +90,7 @@
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)valueERD).BeginInit();
             ((System.ComponentModel.ISupportInitialize)valueCPCE).BeginInit();
             tabPage3.SuspendLayout();
             tabPage4.SuspendLayout();
@@ -261,17 +264,59 @@
             // tabPage2
             // 
             tabPage2.BackColor = Color.FromArgb(24, 24, 28);
+            tabPage2.Controls.Add(valueERD);
+            tabPage2.Controls.Add(valueEED);
+            tabPage2.Controls.Add(label21);
             tabPage2.Controls.Add(valueCPCE);
             tabPage2.Controls.Add(label7);
-            tabPage2.Controls.Add(valueERD);
             tabPage2.Controls.Add(valueCCEPE);
             tabPage2.Controls.Add(label5);
             tabPage2.Controls.Add(label6);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 27);
             tabPage2.Name = "tabPage2";
-            tabPage2.Size = new Size(800, 402);
+            tabPage2.Size = new Size(800, 399);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Raids";
+            // 
+            // valueERD
+            // 
+            valueERD.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            valueERD.BackColor = Color.FromArgb(24, 24, 28);
+            valueERD.BorderStyle = BorderStyle.FixedSingle;
+            valueERD.ForeColor = Color.Silver;
+            valueERD.Increment = new decimal(new int[] { 1000, 0, 0, 0 });
+            valueERD.Location = new Point(445, 59);
+            valueERD.Maximum = new decimal(new int[] { 604800, 0, 0, 0 });
+            valueERD.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            valueERD.Name = "valueERD";
+            valueERD.Size = new Size(100, 25);
+            valueERD.TabIndex = 13;
+            valueERD.ThousandsSeparator = true;
+            valueERD.Value = new decimal(new int[] { 40, 0, 0, 0 });
+            // 
+            // valueEED
+            // 
+            valueEED.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            valueEED.AutoSize = true;
+            valueEED.Checked = true;
+            valueEED.CheckState = CheckState.Checked;
+            valueEED.Cursor = Cursors.Hand;
+            valueEED.Location = new Point(445, 24);
+            valueEED.Name = "valueEED";
+            valueEED.Size = new Size(54, 22);
+            valueEED.TabIndex = 12;
+            valueEED.Text = "true";
+            valueEED.UseVisualStyleBackColor = true;
+            valueEED.CheckedChanged += valueEED_CheckedChanged;
+            // 
+            // label21
+            // 
+            label21.Location = new Point(24, 24);
+            label21.Name = "label21";
+            label21.Size = new Size(415, 21);
+            label21.TabIndex = 11;
+            label21.Text = "Enable Extended Raid Duration";
+            label21.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // valueCPCE
             // 
@@ -280,7 +325,7 @@
             valueCPCE.BorderStyle = BorderStyle.FixedSingle;
             valueCPCE.ForeColor = Color.Silver;
             valueCPCE.Increment = new decimal(new int[] { 1000, 0, 0, 0 });
-            valueCPCE.Location = new Point(445, 92);
+            valueCPCE.Location = new Point(445, 128);
             valueCPCE.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
             valueCPCE.Name = "valueCPCE";
             valueCPCE.Size = new Size(100, 25);
@@ -291,27 +336,12 @@
             // 
             // label7
             // 
-            label7.Location = new Point(24, 96);
+            label7.Location = new Point(24, 132);
             label7.Name = "label7";
             label7.Size = new Size(415, 21);
             label7.TabIndex = 8;
             label7.Text = "Cost for Paid Coop Exfil";
             label7.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // valueERD
-            // 
-            valueERD.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            valueERD.BackColor = Color.FromArgb(24, 24, 28);
-            valueERD.BorderStyle = BorderStyle.FixedSingle;
-            valueERD.ForeColor = Color.Silver;
-            valueERD.Location = new Point(445, 20);
-            valueERD.Name = "valueERD";
-            valueERD.Size = new Size(100, 25);
-            valueERD.TabIndex = 7;
-            valueERD.Text = "0.1";
-            valueERD.TextChanged += valueERD_TextChanged;
-            valueERD.KeyDown += valueERD_KeyDown;
-            valueERD.KeyPress += valueERD_KeyPress;
             // 
             // valueCCEPE
             // 
@@ -320,7 +350,7 @@
             valueCCEPE.Checked = true;
             valueCCEPE.CheckState = CheckState.Checked;
             valueCCEPE.Cursor = Cursors.Hand;
-            valueCCEPE.Location = new Point(445, 60);
+            valueCCEPE.Location = new Point(445, 96);
             valueCCEPE.Name = "valueCCEPE";
             valueCCEPE.Size = new Size(54, 22);
             valueCCEPE.TabIndex = 6;
@@ -330,7 +360,7 @@
             // 
             // label5
             // 
-            label5.Location = new Point(24, 60);
+            label5.Location = new Point(24, 96);
             label5.Name = "label5";
             label5.Size = new Size(415, 21);
             label5.TabIndex = 5;
@@ -339,7 +369,7 @@
             // 
             // label6
             // 
-            label6.Location = new Point(24, 24);
+            label6.Location = new Point(24, 60);
             label6.Name = "label6";
             label6.Size = new Size(415, 21);
             label6.TabIndex = 4;
@@ -759,6 +789,7 @@
             tabPage1.PerformLayout();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)valueERD).EndInit();
             ((System.ComponentModel.ISupportInitialize)valueCPCE).EndInit();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
@@ -793,7 +824,6 @@
         private Label label3;
         private Label label4;
         private CheckBox valueRCR;
-        private TextBox valueERD;
         private CheckBox valueCCEPE;
         private Label label5;
         private Label label6;
@@ -829,5 +859,8 @@
         private Label label20;
         private Button btnModsLink;
         private CheckBox valueGCT;
+        private CheckBox valueEED;
+        private Label label21;
+        private NumericUpDown valueERD;
     }
 }
