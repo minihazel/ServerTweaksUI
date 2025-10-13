@@ -48,7 +48,7 @@
             label21 = new Label();
             valueCPCE = new NumericUpDown();
             label7 = new Label();
-            valueCCEPE = new CheckBox();
+            valueOSE = new CheckBox();
             label5 = new Label();
             label6 = new Label();
             tabPage3 = new TabPage();
@@ -86,6 +86,8 @@
             panel1 = new Panel();
             errorPanel = new Panel();
             label20 = new Label();
+            checkBox1 = new CheckBox();
+            label23 = new Label();
             sidePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnExit).BeginInit();
             namePanel.SuspendLayout();
@@ -269,17 +271,19 @@
             // tabPage2
             // 
             tabPage2.BackColor = Color.FromArgb(24, 24, 28);
+            tabPage2.Controls.Add(checkBox1);
+            tabPage2.Controls.Add(label23);
             tabPage2.Controls.Add(valueERD);
             tabPage2.Controls.Add(valueEED);
             tabPage2.Controls.Add(label21);
             tabPage2.Controls.Add(valueCPCE);
             tabPage2.Controls.Add(label7);
-            tabPage2.Controls.Add(valueCCEPE);
+            tabPage2.Controls.Add(valueOSE);
             tabPage2.Controls.Add(label5);
             tabPage2.Controls.Add(label6);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 27);
             tabPage2.Name = "tabPage2";
-            tabPage2.Size = new Size(800, 402);
+            tabPage2.Size = new Size(800, 399);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Raids";
             // 
@@ -331,7 +335,7 @@
             valueCPCE.BorderStyle = BorderStyle.FixedSingle;
             valueCPCE.ForeColor = Color.Silver;
             valueCPCE.Increment = new decimal(new int[] { 1000, 0, 0, 0 });
-            valueCPCE.Location = new Point(445, 128);
+            valueCPCE.Location = new Point(445, 164);
             valueCPCE.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
             valueCPCE.Name = "valueCPCE";
             valueCPCE.Size = new Size(100, 25);
@@ -342,27 +346,27 @@
             // 
             // label7
             // 
-            label7.Location = new Point(24, 132);
+            label7.Location = new Point(24, 168);
             label7.Name = "label7";
             label7.Size = new Size(415, 21);
             label7.TabIndex = 8;
             label7.Text = "Cost for Paid Coop Exfil";
             label7.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // valueCCEPE
+            // valueOSE
             // 
-            valueCCEPE.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            valueCCEPE.AutoSize = true;
-            valueCCEPE.Checked = true;
-            valueCCEPE.CheckState = CheckState.Checked;
-            valueCCEPE.Cursor = Cursors.Hand;
-            valueCCEPE.Location = new Point(445, 96);
-            valueCCEPE.Name = "valueCCEPE";
-            valueCCEPE.Size = new Size(54, 22);
-            valueCCEPE.TabIndex = 6;
-            valueCCEPE.Text = "true";
-            valueCCEPE.UseVisualStyleBackColor = true;
-            valueCCEPE.CheckedChanged += valueCCEPE_CheckedChanged;
+            valueOSE.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            valueOSE.AutoSize = true;
+            valueOSE.Checked = true;
+            valueOSE.CheckState = CheckState.Checked;
+            valueOSE.Cursor = Cursors.Hand;
+            valueOSE.Location = new Point(445, 96);
+            valueOSE.Name = "valueOSE";
+            valueOSE.Size = new Size(54, 22);
+            valueOSE.TabIndex = 6;
+            valueOSE.Text = "true";
+            valueOSE.UseVisualStyleBackColor = true;
+            valueOSE.CheckedChanged += valueCCEPE_CheckedChanged;
             // 
             // label5
             // 
@@ -370,7 +374,7 @@
             label5.Name = "label5";
             label5.Size = new Size(415, 21);
             label5.TabIndex = 5;
-            label5.Text = "Convert Coop Exfils to Paid Exfils";
+            label5.Text = "Open Standard Exfils";
             label5.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label6
@@ -747,10 +751,10 @@
             tabPage7.BackColor = Color.FromArgb(24, 24, 28);
             tabPage7.Controls.Add(valueEFL);
             tabPage7.Controls.Add(label22);
-            tabPage7.Location = new Point(4, 27);
+            tabPage7.Location = new Point(4, 24);
             tabPage7.Name = "tabPage7";
             tabPage7.Padding = new Padding(3);
-            tabPage7.Size = new Size(800, 399);
+            tabPage7.Size = new Size(800, 402);
             tabPage7.TabIndex = 6;
             tabPage7.Text = "Logging";
             // 
@@ -805,6 +809,29 @@
             label20.TabIndex = 0;
             label20.Text = "ServerTweaks is not in the `user / mods` folder.\r\n\r\nPlease move `ServerTweaksUI.exe` into the `user / mods / ServerTweaks` folder.";
             label20.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // checkBox1
+            // 
+            checkBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            checkBox1.AutoSize = true;
+            checkBox1.Checked = true;
+            checkBox1.CheckState = CheckState.Checked;
+            checkBox1.Cursor = Cursors.Hand;
+            checkBox1.Location = new Point(445, 132);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(54, 22);
+            checkBox1.TabIndex = 15;
+            checkBox1.Text = "true";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // label23
+            // 
+            label23.Location = new Point(24, 132);
+            label23.Name = "label23";
+            label23.Size = new Size(415, 21);
+            label23.TabIndex = 14;
+            label23.Text = "Convert Coop Exfils to Paid Exfils";
+            label23.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // mainForm
             // 
@@ -869,7 +896,7 @@
         private Label label3;
         private Label label4;
         private CheckBox valueRCR;
-        private CheckBox valueCCEPE;
+        private CheckBox valueOSE;
         private Label label5;
         private Label label6;
         private Label label7;
@@ -910,5 +937,7 @@
         private TabPage tabPage7;
         private CheckBox valueEFL;
         private Label label22;
+        private CheckBox checkBox1;
+        private Label label23;
     }
 }

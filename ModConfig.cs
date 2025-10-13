@@ -42,8 +42,8 @@ namespace ServerTweaksUI
         [JsonProperty("RemoveGlobalConstructionTime")]
         public bool RemoveGlobalConstructionTime { get; set; }
 
-        [JsonProperty("RemoveRestrictions")]
-        public bool RemoveRestrictions { get; set; }
+        [JsonProperty("RemoveAllRestrictions")]
+        public bool RemoveAllRestrictions { get; set; }
     }
 
     public class RaidsConfig
@@ -53,6 +53,9 @@ namespace ServerTweaksUI
 
         [JsonProperty("ExtraExfilTime")]
         public int ExtraExfilTime { get; set; }
+
+        [JsonProperty("OpenStandardExfils")]
+        public bool OpenStandardExfils { get; set; }
 
         [JsonProperty("UsePaidCoopExfil")]
         public bool UsePaidCoopExfil { get; set; }
@@ -100,7 +103,7 @@ namespace ServerTweaksUI
         public bool QuestItems { get; set; }
 
         [JsonProperty("SpecialSlotItems")]
-        public bool SpecialItems { get; set; }
+        public bool SpecialSlotItems { get; set; }
     }
 
     public class TradersConfig

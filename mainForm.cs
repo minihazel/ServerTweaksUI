@@ -26,16 +26,16 @@ namespace ServerTweaksUI
             bool enableLogging = valueEFL.Checked;
             bool gctValue = valueGCT.Checked;
 
-            bool removeRestrictions = valueRCR.Checked;
+            bool RemoveAllRestrictions = valueRCR.Checked;
 
             bool extendedRaid = valueEED.Checked;
             decimal extendedDuration = valueERD.Value;
             int extendedRaidDuration = Convert.ToInt32(extendedDuration);
+            bool openStandardExfils = valueOSE.Checked;
 
             decimal cost = valueCPCE.Value;
             int costCoopExfil = Convert.ToInt32(cost);
-
-            bool usePaidExfil = valueCCEPE.Checked;
+            bool usePaidExfil = valueOSE.Checked;
 
             bool weightedArmbands = valueWA.Checked;
             int armbandWeight = int.TryParse(valueAW.Text, out int weight) ? weight : -60;
@@ -60,10 +60,11 @@ namespace ServerTweaksUI
 
             jsonObject["EnableFullLogging"] = enableLogging;
             jsonObject["Hideout"]["RemoveGlobalConstructionTime"] = gctValue;
-            jsonObject["Hideout"]["RemoveRestrictions"] = removeRestrictions;
+            jsonObject["Hideout"]["RemoveAllRestrictions"] = RemoveAllRestrictions;
 
             jsonObject["Raids"]["EnableExtendedDuration"] = extendedRaid;
             jsonObject["Raids"]["ExtraExfilTime"] = extendedRaidDuration;
+            jsonObject["Raids"]["OpenStandardExfils"] = openStandardExfils;
             jsonObject["Raids"]["UsePaidCoopExfil"] = usePaidExfil;
             jsonObject["Raids"]["CostForCoopExfil"] = costCoopExfil;
 
@@ -76,8 +77,8 @@ namespace ServerTweaksUI
             jsonObject["Inventory"]["LoseItemsOnDeath"]["Guns"] = lostOnDeathItems["Guns"];
             jsonObject["Inventory"]["LoseItemsOnDeath"]["Knife"] = lostOnDeathItems["Knife"];
             jsonObject["Inventory"]["LoseItemsOnDeath"]["Container"] = lostOnDeathItems["Container"];
-            jsonObject["Inventory"]["LoseItemsOnDeath"]["questItems"] = lostOnDeathItems["questItems"];
-            jsonObject["Inventory"]["LoseItemsOnDeath"]["specialItems"] = lostOnDeathItems["specialItems"];
+            jsonObject["Inventory"]["LoseItemsOnDeath"]["QuestItems"] = lostOnDeathItems["QuestItems"];
+            jsonObject["Inventory"]["LoseItemsOnDeath"]["SpecialSlotItems"] = lostOnDeathItems["SpecialSlotItems"];
 
             jsonObject["Traders"]["AllClothingIsFree"] = allClothingFree;
 
@@ -108,11 +109,12 @@ namespace ServerTweaksUI
 
             valueEFL.Checked = jsonObject["EnableFullLogging"]?.ToObject<bool>() ?? true;
             valueGCT.Checked = jsonObject["Hideout"]["RemoveGlobalConstructionTime"]?.ToObject<bool>() ?? false;
-            valueRCR.Checked = jsonObject["Hideout"]["RemoveRestrictions"]?.ToObject<bool>() ?? false;
+            valueRCR.Checked = jsonObject["Hideout"]["RemoveAllRestrictions"]?.ToObject<bool>() ?? false;
 
             valueEED.Checked = jsonObject["Raids"]["EnableExtendedDuration"]?.ToObject<bool>() ?? false;
             valueERD.Text = jsonObject["Raids"]["ExtraExfilTime"]?.ToString() ?? "-60";
-            valueCCEPE.Checked = jsonObject["Raids"]["UsePaidCoopExfil"]?.ToObject<bool>() ?? false;
+            valueOSE.Checked = jsonObject["Raids"]["OpenStandardExfils"]?.ToObject<bool>() ?? false;
+            valueOSE.Checked = jsonObject["Raids"]["UsePaidCoopExfil"]?.ToObject<bool>() ?? false;
             valueCPCE.Value = jsonObject["Raids"]["CostForCoopExfil"]?.ToObject<decimal>() ?? 10000;
 
             valueWA.Checked = jsonObject["Inventory"]["WeightedArmbands"]?.ToObject<bool>() ?? false;
@@ -157,8 +159,8 @@ namespace ServerTweaksUI
                     lostOnDeathItems.Add("Guns", true);
                     lostOnDeathItems.Add("Knife", true);
                     lostOnDeathItems.Add("Container", true);
-                    lostOnDeathItems.Add("questItems", true);
-                    lostOnDeathItems.Add("specialItems", true);
+                    lostOnDeathItems.Add("QuestItems", true);
+                    lostOnDeathItems.Add("SpecialSlotItems", true);
 
                     listDeathItems.Items.Add("Headgear");
                     listDeathItems.Items.Add("Body");
@@ -179,12 +181,13 @@ namespace ServerTweaksUI
                         Hideout = new HideoutConfig
                         {
                             RemoveGlobalConstructionTime = false,
-                            RemoveRestrictions = false
+                            RemoveAllRestrictions = false
                         },
                         Raids = new RaidsConfig
                         {
                             EnableExtendedDuration = false,
                             ExtraExfilTime = 40,
+                            OpenStandardExfils = false,
                             UsePaidCoopExfil = false,
                             CostForCoopExfil = 10000
                         },
@@ -202,7 +205,7 @@ namespace ServerTweaksUI
                                 Knife = true,
                                 Container = true,
                                 QuestItems = true,
-                                SpecialItems = true
+                                SpecialSlotItems = true
                             }
                         },
                         Traders = new TradersConfig
@@ -368,15 +371,14 @@ namespace ServerTweaksUI
             string currentlyselected = listDeathItems.SelectedItem.ToString();
             if (currentlyselected == "Quest Items")
             {
-                lostOnDeathItems["questItems"] = valueLIOD.Checked;
+                lostOnDeathItems["QuestItems"] = valueLIOD.Checked;
             }
             else if (currentlyselected == "Special Slot Items")
             {
-                lostOnDeathItems["specialItems"] = valueLIOD.Checked;
+                lostOnDeathItems["SpecialSlotItems"] = valueLIOD.Checked;
             }
             else
             {
-                lostOnDeathItems[currentlyselected] = valueLIOD.Checked;
             }
 
             saveToConfig();
@@ -424,11 +426,11 @@ namespace ServerTweaksUI
             string? currentlyselected = listDeathItems.SelectedItem.ToString();
             if (currentlyselected == "Quest Items")
             {
-                valueLIOD.Checked = lostOnDeathItems["questItems"];
+                valueLIOD.Checked = lostOnDeathItems["QuestItems"];
             }
             else if (currentlyselected == "Special Slot Items")
             {
-                valueLIOD.Checked = lostOnDeathItems["specialItems"];
+                valueLIOD.Checked = lostOnDeathItems["SpecialSlotItems"];
             }
             else
             {
