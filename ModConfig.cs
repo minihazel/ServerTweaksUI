@@ -36,7 +36,7 @@ namespace ServerTweaksUI
 
     public class HideoutConfig
     {
-        [JsonProperty("removeGlobalConstructionTime")]
+        [JsonProperty("RemoveGlobalConstructionTime")]
         public bool RemoveGlobalConstructionTime { get; set; }
 
         [JsonProperty("RemoveRestrictions")]
@@ -69,7 +69,7 @@ namespace ServerTweaksUI
         [JsonProperty("LootableMelee")]
         public bool LootableMelee { get; set; }
 
-        [JsonProperty("masterKey")]
+        [JsonProperty("MasterKey")]
         public bool MasterKey { get; set; }
 
         [JsonProperty("loseItemsOnDeath")]
