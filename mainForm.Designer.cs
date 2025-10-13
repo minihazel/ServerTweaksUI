@@ -80,12 +80,12 @@
             label16 = new Label();
             valueIL = new CheckBox();
             label15 = new Label();
-            panel1 = new Panel();
-            errorPanel = new Panel();
-            label20 = new Label();
             tabPage7 = new TabPage();
             valueEFL = new CheckBox();
             label22 = new Label();
+            panel1 = new Panel();
+            errorPanel = new Panel();
+            label20 = new Label();
             sidePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnExit).BeginInit();
             namePanel.SuspendLayout();
@@ -101,9 +101,9 @@
             tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)valueWSIRH).BeginInit();
             ((System.ComponentModel.ISupportInitialize)valueMSTHI).BeginInit();
+            tabPage7.SuspendLayout();
             panel1.SuspendLayout();
             errorPanel.SuspendLayout();
-            tabPage7.SuspendLayout();
             SuspendLayout();
             // 
             // sidePanel
@@ -277,9 +277,9 @@
             tabPage2.Controls.Add(valueCCEPE);
             tabPage2.Controls.Add(label5);
             tabPage2.Controls.Add(label6);
-            tabPage2.Location = new Point(4, 27);
+            tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
-            tabPage2.Size = new Size(800, 399);
+            tabPage2.Size = new Size(800, 402);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Raids";
             // 
@@ -396,9 +396,9 @@
             tabPage3.Controls.Add(valueWA);
             tabPage3.Controls.Add(label9);
             tabPage3.Controls.Add(label10);
-            tabPage3.Location = new Point(4, 27);
+            tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(800, 399);
+            tabPage3.Size = new Size(800, 402);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Inventory";
             // 
@@ -539,9 +539,9 @@
             tabPage4.BackColor = Color.FromArgb(24, 24, 28);
             tabPage4.Controls.Add(valueACF);
             tabPage4.Controls.Add(label13);
-            tabPage4.Location = new Point(4, 27);
+            tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(800, 399);
+            tabPage4.Size = new Size(800, 402);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Traders";
             // 
@@ -574,9 +574,9 @@
             tabPage5.BackColor = Color.FromArgb(24, 24, 28);
             tabPage5.Controls.Add(valueUFL);
             tabPage5.Controls.Add(label14);
-            tabPage5.Location = new Point(4, 27);
+            tabPage5.Location = new Point(4, 24);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(800, 399);
+            tabPage5.Size = new Size(800, 402);
             tabPage5.TabIndex = 4;
             tabPage5.Text = "Flea market";
             // 
@@ -617,9 +617,9 @@
             tabPage6.Controls.Add(label16);
             tabPage6.Controls.Add(valueIL);
             tabPage6.Controls.Add(label15);
-            tabPage6.Location = new Point(4, 27);
+            tabPage6.Location = new Point(4, 24);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(800, 399);
+            tabPage6.Size = new Size(800, 402);
             tabPage6.TabIndex = 5;
             tabPage6.Text = "Insurance";
             // 
@@ -742,6 +742,42 @@
             label15.Text = "Insurance on Labs";
             label15.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // tabPage7
+            // 
+            tabPage7.BackColor = Color.FromArgb(24, 24, 28);
+            tabPage7.Controls.Add(valueEFL);
+            tabPage7.Controls.Add(label22);
+            tabPage7.Location = new Point(4, 27);
+            tabPage7.Name = "tabPage7";
+            tabPage7.Padding = new Padding(3);
+            tabPage7.Size = new Size(800, 399);
+            tabPage7.TabIndex = 6;
+            tabPage7.Text = "Logging";
+            // 
+            // valueEFL
+            // 
+            valueEFL.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            valueEFL.AutoSize = true;
+            valueEFL.Checked = true;
+            valueEFL.CheckState = CheckState.Checked;
+            valueEFL.Cursor = Cursors.Hand;
+            valueEFL.Location = new Point(445, 24);
+            valueEFL.Name = "valueEFL";
+            valueEFL.Size = new Size(54, 22);
+            valueEFL.TabIndex = 5;
+            valueEFL.Text = "true";
+            valueEFL.UseVisualStyleBackColor = true;
+            valueEFL.CheckedChanged += valueEFL_CheckedChanged;
+            // 
+            // label22
+            // 
+            label22.Location = new Point(24, 24);
+            label22.Name = "label22";
+            label22.Size = new Size(415, 21);
+            label22.TabIndex = 4;
+            label22.Text = "Enable Full Logging";
+            label22.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -769,41 +805,6 @@
             label20.TabIndex = 0;
             label20.Text = "ServerTweaks is not in the `user / mods` folder.\r\n\r\nPlease move `ServerTweaksUI.exe` into the `user / mods / ServerTweaks` folder.";
             label20.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // tabPage7
-            // 
-            tabPage7.BackColor = Color.FromArgb(24, 24, 28);
-            tabPage7.Controls.Add(valueEFL);
-            tabPage7.Controls.Add(label22);
-            tabPage7.Location = new Point(4, 27);
-            tabPage7.Name = "tabPage7";
-            tabPage7.Padding = new Padding(3);
-            tabPage7.Size = new Size(800, 399);
-            tabPage7.TabIndex = 6;
-            tabPage7.Text = "Logging";
-            // 
-            // valueEFL
-            // 
-            valueEFL.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            valueEFL.AutoSize = true;
-            valueEFL.Checked = true;
-            valueEFL.CheckState = CheckState.Checked;
-            valueEFL.Cursor = Cursors.Hand;
-            valueEFL.Location = new Point(445, 24);
-            valueEFL.Name = "valueEFL";
-            valueEFL.Size = new Size(54, 22);
-            valueEFL.TabIndex = 5;
-            valueEFL.Text = "true";
-            valueEFL.UseVisualStyleBackColor = true;
-            // 
-            // label22
-            // 
-            label22.Location = new Point(24, 24);
-            label22.Name = "label22";
-            label22.Size = new Size(415, 21);
-            label22.TabIndex = 4;
-            label22.Text = "Enable Full Logging";
-            label22.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // mainForm
             // 
@@ -843,10 +844,10 @@
             tabPage6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)valueWSIRH).EndInit();
             ((System.ComponentModel.ISupportInitialize)valueMSTHI).EndInit();
-            panel1.ResumeLayout(false);
-            errorPanel.ResumeLayout(false);
             tabPage7.ResumeLayout(false);
             tabPage7.PerformLayout();
+            panel1.ResumeLayout(false);
+            errorPanel.ResumeLayout(false);
             ResumeLayout(false);
         }
 

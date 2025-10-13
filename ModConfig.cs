@@ -10,7 +10,7 @@ namespace ServerTweaksUI
     public class ModConfig
     {
         [JsonProperty("EnableFullLogging")]
-        public bool EnableFullLogging { get; set; } = new();
+        public bool EnableFullLogging { get; set; }
 
         [JsonProperty("Hideout")]
         public HideoutConfig Hideout { get; set; } = new();

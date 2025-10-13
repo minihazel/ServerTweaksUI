@@ -122,7 +122,7 @@ namespace ServerTweaksUI
             listDeathItems.SelectedIndex = 0;
             valueLIOD.Checked = jsonObject["Inventory"]["LoseItemsOnDeath"]["Headgear"]?.ToObject<bool>() ?? true;
 
-            valueACF.Checked = jsonObject["traders"]["AllClothingIsFree"]?.ToObject<bool>() ?? false;
+            valueACF.Checked = jsonObject["Traders"]["AllClothingIsFree"]?.ToObject<bool>() ?? false;
 
             valueUFL.Checked = jsonObject["FleaMarket"]["UnlockFleaAtLevel1"]?.ToObject<bool>() ?? false;
 
@@ -465,6 +465,11 @@ namespace ServerTweaksUI
         }
 
         private void valueERD_ValueChanged(object sender, EventArgs e)
+        {
+            saveToConfig();
+        }
+
+        private void valueEFL_CheckedChanged(object sender, EventArgs e)
         {
             saveToConfig();
         }
