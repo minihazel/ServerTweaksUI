@@ -23,6 +23,7 @@ namespace ServerTweaksUI
             string content = File.ReadAllText(configJson);
             var jsonObject = JObject.Parse(content);
 
+            bool enableLogging = valueEFL.Checked;
             bool gctValue = valueGCT.Checked;
 
             bool removeRestrictions = valueRCR.Checked;
@@ -57,35 +58,36 @@ namespace ServerTweaksUI
             decimal whenShouldInsuranceReturnDecimal = valueWSIRH.Value;
             int whenShouldInsuranceReturn = Convert.ToInt32(whenShouldInsuranceReturnDecimal);
 
-            jsonObject["hideout"]["removeGlobalConstructionTime"] = gctValue;
-            jsonObject["hideout"]["RemoveRestrictions"] = removeRestrictions;
+            jsonObject["EnableFullLogging"] = enableLogging;
+            jsonObject["Hideout"]["RemoveGlobalConstructionTime"] = gctValue;
+            jsonObject["Hideout"]["RemoveRestrictions"] = removeRestrictions;
 
-            jsonObject["raids"]["EnableExtendedDuration"] = extendedRaid;
-            jsonObject["raids"]["ExtraExfilTime"] = extendedRaidDuration;
-            jsonObject["raids"]["UsePaidCoopExfil"] = usePaidExfil;
-            jsonObject["raids"]["CostForCoopExfil"] = costCoopExfil;
+            jsonObject["Raids"]["EnableExtendedDuration"] = extendedRaid;
+            jsonObject["Raids"]["ExtraExfilTime"] = extendedRaidDuration;
+            jsonObject["Raids"]["UsePaidCoopExfil"] = usePaidExfil;
+            jsonObject["Raids"]["CostForCoopExfil"] = costCoopExfil;
 
-            jsonObject["inventory"]["WeightedArmbands"] = weightedArmbands;
-            jsonObject["inventory"]["ArmbandWeight"] = armbandWeight;
-            jsonObject["inventory"]["LootableMelee"] = lootableMelee;
-            jsonObject["inventory"]["masterKey"] = masterKey;
-            jsonObject["inventory"]["loseItemsOnDeath"]["Headgear"] = lostOnDeathItems["Headgear"];
-            jsonObject["inventory"]["loseItemsOnDeath"]["Body"] = lostOnDeathItems["Body"];
-            jsonObject["inventory"]["loseItemsOnDeath"]["Guns"] = lostOnDeathItems["Guns"];
-            jsonObject["inventory"]["loseItemsOnDeath"]["Knife"] = lostOnDeathItems["Knife"];
-            jsonObject["inventory"]["loseItemsOnDeath"]["Container"] = lostOnDeathItems["Container"];
-            jsonObject["inventory"]["loseItemsOnDeath"]["questItems"] = lostOnDeathItems["questItems"];
-            jsonObject["inventory"]["loseItemsOnDeath"]["specialItems"] = lostOnDeathItems["specialItems"];
+            jsonObject["Inventory"]["WeightedArmbands"] = weightedArmbands;
+            jsonObject["Inventory"]["ArmbandWeight"] = armbandWeight;
+            jsonObject["Inventory"]["LootableMelee"] = lootableMelee;
+            jsonObject["Inventory"]["MasterKey"] = masterKey;
+            jsonObject["Inventory"]["LoseItemsOnDeath"]["Headgear"] = lostOnDeathItems["Headgear"];
+            jsonObject["Inventory"]["LoseItemsOnDeath"]["Body"] = lostOnDeathItems["Body"];
+            jsonObject["Inventory"]["LoseItemsOnDeath"]["Guns"] = lostOnDeathItems["Guns"];
+            jsonObject["Inventory"]["LoseItemsOnDeath"]["Knife"] = lostOnDeathItems["Knife"];
+            jsonObject["Inventory"]["LoseItemsOnDeath"]["Container"] = lostOnDeathItems["Container"];
+            jsonObject["Inventory"]["LoseItemsOnDeath"]["questItems"] = lostOnDeathItems["questItems"];
+            jsonObject["Inventory"]["LoseItemsOnDeath"]["specialItems"] = lostOnDeathItems["specialItems"];
 
-            jsonObject["traders"]["AllClothingIsFree"] = allClothingFree;
+            jsonObject["Traders"]["AllClothingIsFree"] = allClothingFree;
 
-            jsonObject["fleamarket"]["UnlockFleaAtLevel1"] = unlockFlea;
+            jsonObject["FleaMarket"]["UnlockFleaAtLevel1"] = unlockFlea;
 
-            jsonObject["insurance"]["InsuranceOnLabs"] = insuranceOnLabs;
-            jsonObject["insurance"]["GuaranteedReturnPrapor"] = guaranteedReturnPrapor;
-            jsonObject["insurance"]["GuaranteedReturnTherapist"] = guaranteedReturnTherapist;
-            jsonObject["insurance"]["InsuranceMaxStorageTimeInHours"] = insuranceMaxStorage;
-            jsonObject["insurance"]["WhenShouldInsuranceReturnInHours"] = whenShouldInsuranceReturn;
+            jsonObject["Insurance"]["InsuranceOnLabs"] = insuranceOnLabs;
+            jsonObject["Insurance"]["GuaranteedReturnPrapor"] = guaranteedReturnPrapor;
+            jsonObject["Insurance"]["GuaranteedReturnTherapist"] = guaranteedReturnTherapist;
+            jsonObject["Insurance"]["InsuranceMaxStorageTimeInHours"] = insuranceMaxStorage;
+            jsonObject["Insurance"]["WhenShouldInsuranceReturnInHours"] = whenShouldInsuranceReturn;
 
             try
             {
@@ -104,28 +106,31 @@ namespace ServerTweaksUI
             string content = File.ReadAllText(configJson);
             var jsonObject = JObject.Parse(content);
 
-            valueGCT.Checked = jsonObject["hideout"]["removeGlobalConstructionTime"]?.ToObject<bool>() ?? false;
-            valueRCR.Checked = jsonObject["hideout"]["RemoveRestrictions"]?.ToObject<bool>() ?? false;
+            valueEFL.Checked = jsonObject["EnableFullLogging"]?.ToObject<bool>() ?? true;
+            valueGCT.Checked = jsonObject["Hideout"]["RemoveGlobalConstructionTime"]?.ToObject<bool>() ?? false;
+            valueRCR.Checked = jsonObject["Hideout"]["RemoveRestrictions"]?.ToObject<bool>() ?? false;
 
-            valueEED.Checked = jsonObject["raids"]["EnableExtendedDuration"]?.ToObject<bool>() ?? false;
-            valueERD.Text = jsonObject["raids"]["ExtraExfilTime"]?.ToString() ?? "-60";
-            valueCCEPE.Checked = jsonObject["raids"]["UsePaidCoopExfil"]?.ToObject<bool>() ?? false;
-            valueCPCE.Value = jsonObject["raids"]["CostForCoopExfil"]?.ToObject<decimal>() ?? 10000;
+            valueEED.Checked = jsonObject["Raids"]["EnableExtendedDuration"]?.ToObject<bool>() ?? false;
+            valueERD.Text = jsonObject["Raids"]["ExtraExfilTime"]?.ToString() ?? "-60";
+            valueCCEPE.Checked = jsonObject["Raids"]["UsePaidCoopExfil"]?.ToObject<bool>() ?? false;
+            valueCPCE.Value = jsonObject["Raids"]["CostForCoopExfil"]?.ToObject<decimal>() ?? 10000;
 
-            valueWA.Checked = jsonObject["inventory"]["WeightedArmbands"]?.ToObject<bool>() ?? false;
-            valueLBM.Checked = jsonObject["inventory"]["LootableMelee"]?.ToObject<bool>() ?? false;
-            valueMK.Checked = jsonObject["inventory"]["masterKey"]?.ToObject<bool>() ?? false;
+            valueWA.Checked = jsonObject["Inventory"]["WeightedArmbands"]?.ToObject<bool>() ?? false;
+            valueLBM.Checked = jsonObject["Inventory"]["LootableMelee"]?.ToObject<bool>() ?? false;
+            valueMK.Checked = jsonObject["Inventory"]["MasterKey"]?.ToObject<bool>() ?? false;
 
             listDeathItems.SelectedIndex = 0;
-            valueLIOD.Checked = jsonObject["inventory"]["loseItemsOnDeath"]["Headgear"]?.ToObject<bool>() ?? true;
+            valueLIOD.Checked = jsonObject["Inventory"]["LoseItemsOnDeath"]["Headgear"]?.ToObject<bool>() ?? true;
 
             valueACF.Checked = jsonObject["traders"]["AllClothingIsFree"]?.ToObject<bool>() ?? false;
-            valueUFL.Checked = jsonObject["fleamarket"]["UnlockFleaAtLevel1"]?.ToObject<bool>() ?? false;
-            valueIL.Checked = jsonObject["insurance"]["InsuranceOnLabs"]?.ToObject<bool>() ?? false;
-            valueGIRP.Checked = jsonObject["insurance"]["GuaranteedReturnPrapor"]?.ToObject<bool>() ?? false;
-            valueGIRT.Checked = jsonObject["insurance"]["GuaranteedReturnTherapist"]?.ToObject<bool>() ?? false;
-            valueMSTHI.Value = jsonObject["insurance"]["InsuranceMaxStorageTimeInHours"]?.ToObject<decimal>() ?? 144;
-            valueWSIRH.Value = jsonObject["insurance"]["WhenShouldInsuranceReturnInHours"]?.ToObject<decimal>() ?? 0;
+
+            valueUFL.Checked = jsonObject["FleaMarket"]["UnlockFleaAtLevel1"]?.ToObject<bool>() ?? false;
+
+            valueIL.Checked = jsonObject["Insurance"]["InsuranceOnLabs"]?.ToObject<bool>() ?? false;
+            valueGIRP.Checked = jsonObject["Insurance"]["GuaranteedReturnPrapor"]?.ToObject<bool>() ?? false;
+            valueGIRT.Checked = jsonObject["Insurance"]["GuaranteedReturnTherapist"]?.ToObject<bool>() ?? false;
+            valueMSTHI.Value = jsonObject["Insurance"]["InsuranceMaxStorageTimeInHours"]?.ToObject<decimal>() ?? 144;
+            valueWSIRH.Value = jsonObject["Insurance"]["WhenShouldInsuranceReturnInHours"]?.ToObject<decimal>() ?? 0;
         }
 
         private void initializeApp()
@@ -155,6 +160,14 @@ namespace ServerTweaksUI
                     lostOnDeathItems.Add("questItems", true);
                     lostOnDeathItems.Add("specialItems", true);
 
+                    listDeathItems.Items.Add("Headgear");
+                    listDeathItems.Items.Add("Body");
+                    listDeathItems.Items.Add("Guns");
+                    listDeathItems.Items.Add("Knife");
+                    listDeathItems.Items.Add("Container");
+                    listDeathItems.Items.Add("Quest Items");
+                    listDeathItems.Items.Add("Special Slot Items");
+
                     loadConfig();
                     return;
                 }
@@ -162,6 +175,7 @@ namespace ServerTweaksUI
                 {
                     var config = new ModConfig
                     {
+                        EnableFullLogging = true,
                         Hideout = new HideoutConfig
                         {
                             RemoveGlobalConstructionTime = false,
@@ -336,8 +350,17 @@ namespace ServerTweaksUI
         private void valueMK_CheckedChanged(object sender, EventArgs e)
         {
             saveToConfig();
+            if (valueMK.Checked)
+            {
+                valueLIOD.Enabled = true;
+                listDeathItems.Enabled = true;
+            }
+            else
+            {
+                valueLIOD.Enabled = false;
+                listDeathItems.Enabled = false;
+            }
         }
-
         private void valueLIOD_CheckedChanged(object sender, EventArgs e)
         {
             if (listDeathItems.SelectedItem == null) return;
@@ -347,7 +370,7 @@ namespace ServerTweaksUI
             {
                 lostOnDeathItems["questItems"] = valueLIOD.Checked;
             }
-            else if (currentlyselected == "Special Items")
+            else if (currentlyselected == "Special Slot Items")
             {
                 lostOnDeathItems["specialItems"] = valueLIOD.Checked;
             }
@@ -403,7 +426,7 @@ namespace ServerTweaksUI
             {
                 valueLIOD.Checked = lostOnDeathItems["questItems"];
             }
-            else if (currentlyselected == "Special Items")
+            else if (currentlyselected == "Special Slot Items")
             {
                 valueLIOD.Checked = lostOnDeathItems["specialItems"];
             }

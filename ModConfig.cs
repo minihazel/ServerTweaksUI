@@ -9,22 +9,25 @@ namespace ServerTweaksUI
 {
     public class ModConfig
     {
-        [JsonProperty("hideout")]
+        [JsonProperty("EnableFullLogging")]
+        public bool EnableFullLogging { get; set; } = new();
+
+        [JsonProperty("Hideout")]
         public HideoutConfig Hideout { get; set; } = new();
 
-        [JsonProperty("raids")]
+        [JsonProperty("Raids")]
         public RaidsConfig Raids { get; set; } = new();
 
-        [JsonProperty("inventory")]
+        [JsonProperty("Inventory")]
         public InventoryConfig Inventory { get; set; } = new();
 
-        [JsonProperty("traders")]
+        [JsonProperty("Traders")]
         public TradersConfig Traders { get; set; } = new();
 
-        [JsonProperty("fleamarket")]
+        [JsonProperty("FleaMarket")]
         public FleamarketConfig Fleamarket { get; set; } = new();
 
-        [JsonProperty("insurance")]
+        [JsonProperty("Insurance")]
         public InsuranceConfig Insurance { get; set; } = new();
 
         public void SaveToFile(string filePath)
@@ -72,8 +75,8 @@ namespace ServerTweaksUI
         [JsonProperty("MasterKey")]
         public bool MasterKey { get; set; }
 
-        [JsonProperty("loseItemsOnDeath")]
-        public LoseItemsOnDeathConfig LoseItemsOnDeath { get; set; }
+        [JsonProperty("LoseItemsOnDeath")]
+        public LoseItemsOnDeathConfig LoseItemsOnDeath { get; set; } = new();
     }
 
     public class LoseItemsOnDeathConfig
@@ -93,10 +96,10 @@ namespace ServerTweaksUI
         [JsonProperty("Container")]
         public bool Container { get; set; }
 
-        [JsonProperty("questItems")]
+        [JsonProperty("QuestItems")]
         public bool QuestItems { get; set; }
 
-        [JsonProperty("specialItems")]
+        [JsonProperty("SpecialSlotItems")]
         public bool SpecialItems { get; set; }
     }
 
