@@ -31,11 +31,12 @@ namespace ServerTweaksUI
             bool extendedRaid = valueEED.Checked;
             decimal extendedDuration = valueERD.Value;
             int extendedRaidDuration = Convert.ToInt32(extendedDuration);
+
             bool openStandardExfils = valueOSE.Checked;
 
             decimal cost = valueCPCE.Value;
             int costCoopExfil = Convert.ToInt32(cost);
-            bool usePaidExfil = valueOSE.Checked;
+            bool usePaidExfil = valueCCEPE.Checked;
 
             bool weightedArmbands = valueWA.Checked;
             int armbandWeight = int.TryParse(valueAW.Text, out int weight) ? weight : -60;
@@ -114,7 +115,7 @@ namespace ServerTweaksUI
             valueEED.Checked = jsonObject["Raids"]["EnableExtendedDuration"]?.ToObject<bool>() ?? false;
             valueERD.Text = jsonObject["Raids"]["ExtraExfilTime"]?.ToString() ?? "-60";
             valueOSE.Checked = jsonObject["Raids"]["OpenStandardExfils"]?.ToObject<bool>() ?? false;
-            valueOSE.Checked = jsonObject["Raids"]["UsePaidCoopExfil"]?.ToObject<bool>() ?? false;
+            valueCCEPE.Checked = jsonObject["Raids"]["UsePaidCoopExfil"]?.ToObject<bool>() ?? false;
             valueCPCE.Value = jsonObject["Raids"]["CostForCoopExfil"]?.ToObject<decimal>() ?? 10000;
 
             valueWA.Checked = jsonObject["Inventory"]["WeightedArmbands"]?.ToObject<bool>() ?? false;
@@ -323,6 +324,16 @@ namespace ServerTweaksUI
         }
 
         private void valueCCEPE_CheckedChanged(object sender, EventArgs e)
+        {
+            saveToConfig();
+        }
+
+        private void valueOSE_CheckedChanged(object sender, EventArgs e)
+        {
+            saveToConfig();
+        }
+
+        private void valueCCEPE_CheckedChanged_1(object sender, EventArgs e)
         {
             saveToConfig();
         }
