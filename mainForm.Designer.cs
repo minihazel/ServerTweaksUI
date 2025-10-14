@@ -88,6 +88,8 @@
             panel1 = new Panel();
             errorPanel = new Panel();
             label20 = new Label();
+            valueUAC = new CheckBox();
+            label24 = new Label();
             sidePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnExit).BeginInit();
             namePanel.SuspendLayout();
@@ -209,6 +211,8 @@
             // tabPage1
             // 
             tabPage1.BackColor = Color.FromArgb(24, 24, 28);
+            tabPage1.Controls.Add(valueUAC);
+            tabPage1.Controls.Add(label24);
             tabPage1.Controls.Add(valueGCT);
             tabPage1.Controls.Add(valueRCR);
             tabPage1.Controls.Add(label4);
@@ -834,6 +838,30 @@
             label20.Text = "ServerTweaks is not in the `user / mods` folder.\r\n\r\nPlease move `ServerTweaksUI.exe` into the `user / mods / ServerTweaks` folder.";
             label20.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // valueUAC
+            // 
+            valueUAC.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            valueUAC.AutoSize = true;
+            valueUAC.Checked = true;
+            valueUAC.CheckState = CheckState.Checked;
+            valueUAC.Cursor = Cursors.Hand;
+            valueUAC.Location = new Point(445, 96);
+            valueUAC.Name = "valueUAC";
+            valueUAC.Size = new Size(54, 22);
+            valueUAC.TabIndex = 5;
+            valueUAC.Text = "true";
+            valueUAC.UseVisualStyleBackColor = true;
+            valueUAC.CheckedChanged += valueUAC_CheckedChanged;
+            // 
+            // label24
+            // 
+            label24.Location = new Point(24, 96);
+            label24.Name = "label24";
+            label24.Size = new Size(415, 21);
+            label24.TabIndex = 4;
+            label24.Text = "Unlock All Customization";
+            label24.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // mainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 18F);
@@ -940,5 +968,7 @@
         private Label label22;
         private CheckBox valueCCEPE;
         private Label label23;
+        private CheckBox valueUAC;
+        private Label label24;
     }
 }

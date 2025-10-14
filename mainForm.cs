@@ -27,13 +27,12 @@ namespace ServerTweaksUI
             bool gctValue = valueGCT.Checked;
 
             bool RemoveAllRestrictions = valueRCR.Checked;
+            bool UnlockAllCustomization = valueUAC.Checked;
 
             bool extendedRaid = valueEED.Checked;
             decimal extendedDuration = valueERD.Value;
             int extendedRaidDuration = Convert.ToInt32(extendedDuration);
-
             bool openStandardExfils = valueOSE.Checked;
-
             decimal cost = valueCPCE.Value;
             int costCoopExfil = Convert.ToInt32(cost);
             bool usePaidExfil = valueCCEPE.Checked;
@@ -62,6 +61,7 @@ namespace ServerTweaksUI
             jsonObject["EnableFullLogging"] = enableLogging;
             jsonObject["Hideout"]["RemoveGlobalConstructionTime"] = gctValue;
             jsonObject["Hideout"]["RemoveAllRestrictions"] = RemoveAllRestrictions;
+            jsonObject["Hideout"]["UnlockAllCustomization"] = UnlockAllCustomization;
 
             jsonObject["Raids"]["EnableExtendedDuration"] = extendedRaid;
             jsonObject["Raids"]["ExtraExfilTime"] = extendedRaidDuration;
@@ -111,6 +111,7 @@ namespace ServerTweaksUI
             valueEFL.Checked = jsonObject["EnableFullLogging"]?.ToObject<bool>() ?? true;
             valueGCT.Checked = jsonObject["Hideout"]["RemoveGlobalConstructionTime"]?.ToObject<bool>() ?? false;
             valueRCR.Checked = jsonObject["Hideout"]["RemoveAllRestrictions"]?.ToObject<bool>() ?? false;
+            valueUAC.Checked = jsonObject["Hideout"]["UnlockAllCustomization"]?.ToObject<bool>() ?? false;
 
             valueEED.Checked = jsonObject["Raids"]["EnableExtendedDuration"]?.ToObject<bool>() ?? false;
             valueERD.Text = jsonObject["Raids"]["ExtraExfilTime"]?.ToString() ?? "-60";
@@ -483,6 +484,11 @@ namespace ServerTweaksUI
         }
 
         private void valueEFL_CheckedChanged(object sender, EventArgs e)
+        {
+            saveToConfig();
+        }
+
+        private void valueUAC_CheckedChanged(object sender, EventArgs e)
         {
             saveToConfig();
         }

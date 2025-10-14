@@ -44,6 +44,9 @@ namespace ServerTweaksUI
 
         [JsonProperty("RemoveAllRestrictions")]
         public bool RemoveAllRestrictions { get; set; }
+
+        [JsonProperty("UnlockAllCustomization")]
+        public bool UnlockAllCustomization { get; set; }
     }
 
     public class RaidsConfig
