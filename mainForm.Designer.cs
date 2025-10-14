@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             sidePanel = new Panel();
             btnModsLink = new Button();
@@ -38,6 +39,8 @@
             pictureBox1 = new PictureBox();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            valueUAC = new CheckBox();
+            label24 = new Label();
             valueGCT = new CheckBox();
             valueRCR = new CheckBox();
             label4 = new Label();
@@ -88,8 +91,7 @@
             panel1 = new Panel();
             errorPanel = new Panel();
             label20 = new Label();
-            valueUAC = new CheckBox();
-            label24 = new Label();
+            tweakTooltip = new ToolTip(components);
             sidePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnExit).BeginInit();
             namePanel.SuspendLayout();
@@ -224,6 +226,31 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Hideout";
             // 
+            // valueUAC
+            // 
+            valueUAC.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            valueUAC.AutoSize = true;
+            valueUAC.Checked = true;
+            valueUAC.CheckState = CheckState.Checked;
+            valueUAC.Cursor = Cursors.Hand;
+            valueUAC.Location = new Point(445, 96);
+            valueUAC.Name = "valueUAC";
+            valueUAC.Size = new Size(54, 22);
+            valueUAC.TabIndex = 5;
+            valueUAC.Text = "true";
+            valueUAC.UseVisualStyleBackColor = true;
+            valueUAC.CheckedChanged += valueUAC_CheckedChanged;
+            // 
+            // label24
+            // 
+            label24.Location = new Point(24, 96);
+            label24.Name = "label24";
+            label24.Size = new Size(415, 21);
+            label24.TabIndex = 4;
+            label24.Text = "Unlock All Customization";
+            label24.TextAlign = ContentAlignment.MiddleLeft;
+            tweakTooltip.SetToolTip(label24, "If enabled, all customization options will be available and free");
+            // 
             // valueGCT
             // 
             valueGCT.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -262,6 +289,7 @@
             label4.TabIndex = 1;
             label4.Text = "Remove Construction Restrictions";
             label4.TextAlign = ContentAlignment.MiddleLeft;
+            tweakTooltip.SetToolTip(label4, "If enabled, construction and upgrading won't have any requirements");
             // 
             // label3
             // 
@@ -271,6 +299,7 @@
             label3.TabIndex = 0;
             label3.Text = "Global Construction Time";
             label3.TextAlign = ContentAlignment.MiddleLeft;
+            tweakTooltip.SetToolTip(label3, "If enabled, construction and upgrading will be instant");
             // 
             // tabPage2
             // 
@@ -314,6 +343,7 @@
             label23.TabIndex = 14;
             label23.Text = "Convert Coop Exfils to Paid Exfils";
             label23.TextAlign = ContentAlignment.MiddleLeft;
+            tweakTooltip.SetToolTip(label23, "If enabled, coop exfils will be converted to paid exfils");
             // 
             // valueERD
             // 
@@ -355,6 +385,7 @@
             label21.TabIndex = 11;
             label21.Text = "Enable Extended Raid Duration";
             label21.TextAlign = ContentAlignment.MiddleLeft;
+            tweakTooltip.SetToolTip(label21, "If enabled, your raids will have select more minutes of time");
             // 
             // valueCPCE
             // 
@@ -380,6 +411,7 @@
             label7.TabIndex = 8;
             label7.Text = "Cost for Paid Coop Exfil";
             label7.TextAlign = ContentAlignment.MiddleLeft;
+            tweakTooltip.SetToolTip(label7, "If the above option is enabled, converted coop exfils will cost this much to use");
             // 
             // valueOSE
             // 
@@ -404,6 +436,7 @@
             label5.TabIndex = 5;
             label5.Text = "Open Standard Exfils";
             label5.TextAlign = ContentAlignment.MiddleLeft;
+            tweakTooltip.SetToolTip(label5, "If enabled, all available PMC exfils will be available and accessible");
             // 
             // label6
             // 
@@ -413,6 +446,7 @@
             label6.TabIndex = 4;
             label6.Text = "Extended Raid Duration";
             label6.TextAlign = ContentAlignment.MiddleLeft;
+            tweakTooltip.SetToolTip(label6, "Select how many minutes to increase your raids by");
             // 
             // tabPage3
             // 
@@ -428,9 +462,9 @@
             tabPage3.Controls.Add(valueWA);
             tabPage3.Controls.Add(label9);
             tabPage3.Controls.Add(label10);
-            tabPage3.Location = new Point(4, 24);
+            tabPage3.Location = new Point(4, 27);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(800, 402);
+            tabPage3.Size = new Size(800, 399);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Inventory";
             // 
@@ -469,6 +503,7 @@
             label12.TabIndex = 19;
             label12.Text = "Lose Items On Death";
             label12.TextAlign = ContentAlignment.MiddleLeft;
+            tweakTooltip.SetToolTip(label12, "Which items to lose when you die");
             // 
             // valueMK
             // 
@@ -493,6 +528,7 @@
             label11.TabIndex = 17;
             label11.Text = "Master Key";
             label11.TextAlign = ContentAlignment.MiddleLeft;
+            tweakTooltip.SetToolTip(label11, "If enabled, the below option will be used by the server");
             // 
             // valueLBM
             // 
@@ -517,6 +553,7 @@
             label8.TabIndex = 15;
             label8.Text = "Lootable Bot Melee";
             label8.TextAlign = ContentAlignment.MiddleLeft;
+            tweakTooltip.SetToolTip(label8, "If enabled, all bots you loot will have their melee slots accessible for looting");
             // 
             // valueAW
             // 
@@ -556,6 +593,7 @@
             label9.TabIndex = 12;
             label9.Text = "Armband Weight";
             label9.TextAlign = ContentAlignment.MiddleLeft;
+            tweakTooltip.SetToolTip(label9, "Will only apply if the above option is enabled");
             // 
             // label10
             // 
@@ -565,15 +603,16 @@
             label10.TabIndex = 11;
             label10.Text = "Weighted Armbands";
             label10.TextAlign = ContentAlignment.MiddleLeft;
+            tweakTooltip.SetToolTip(label10, "If enabled, all in-game armbands will have the below value as their weight");
             // 
             // tabPage4
             // 
             tabPage4.BackColor = Color.FromArgb(24, 24, 28);
             tabPage4.Controls.Add(valueACF);
             tabPage4.Controls.Add(label13);
-            tabPage4.Location = new Point(4, 24);
+            tabPage4.Location = new Point(4, 27);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(800, 402);
+            tabPage4.Size = new Size(800, 399);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Traders";
             // 
@@ -600,15 +639,16 @@
             label13.TabIndex = 14;
             label13.Text = "All Clothing is Free";
             label13.TextAlign = ContentAlignment.MiddleLeft;
+            tweakTooltip.SetToolTip(label13, "If enabled, all of Ragman's assortment of clothing will be available and free");
             // 
             // tabPage5
             // 
             tabPage5.BackColor = Color.FromArgb(24, 24, 28);
             tabPage5.Controls.Add(valueUFL);
             tabPage5.Controls.Add(label14);
-            tabPage5.Location = new Point(4, 24);
+            tabPage5.Location = new Point(4, 27);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(800, 402);
+            tabPage5.Size = new Size(800, 399);
             tabPage5.TabIndex = 4;
             tabPage5.Text = "Flea market";
             // 
@@ -635,6 +675,7 @@
             label14.TabIndex = 16;
             label14.Text = "Unlock Flea at Level 1";
             label14.TextAlign = ContentAlignment.MiddleLeft;
+            tweakTooltip.SetToolTip(label14, "If enabled, the Flea market will be unlocked from level 1 instead of 15");
             // 
             // tabPage6
             // 
@@ -649,9 +690,9 @@
             tabPage6.Controls.Add(label16);
             tabPage6.Controls.Add(valueIL);
             tabPage6.Controls.Add(label15);
-            tabPage6.Location = new Point(4, 24);
+            tabPage6.Location = new Point(4, 27);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(800, 402);
+            tabPage6.Size = new Size(800, 399);
             tabPage6.TabIndex = 5;
             tabPage6.Text = "Insurance";
             // 
@@ -677,6 +718,7 @@
             label19.TabIndex = 26;
             label19.Text = "When Should Insurance Return in Hours";
             label19.TextAlign = ContentAlignment.MiddleLeft;
+            tweakTooltip.SetToolTip(label19, "How long before insurance should be returned");
             // 
             // valueMSTHI
             // 
@@ -701,6 +743,7 @@
             label18.TabIndex = 24;
             label18.Text = "Max Storage Time in Hours for Insurance";
             label18.TextAlign = ContentAlignment.MiddleLeft;
+            tweakTooltip.SetToolTip(label18, "How long insurance can be stored in the server before going MIA");
             // 
             // valueGIRT
             // 
@@ -725,6 +768,7 @@
             label17.TabIndex = 22;
             label17.Text = "Guaranteed Insurance Return on Therapist";
             label17.TextAlign = ContentAlignment.MiddleLeft;
+            tweakTooltip.SetToolTip(label17, "If enabled, Therapist's insurance will always return");
             // 
             // valueGIRP
             // 
@@ -749,6 +793,7 @@
             label16.TabIndex = 20;
             label16.Text = "Guaranteed Insurance Return on Prapor";
             label16.TextAlign = ContentAlignment.MiddleLeft;
+            tweakTooltip.SetToolTip(label16, "If enabled, Prapor's insurance will always return");
             // 
             // valueIL
             // 
@@ -773,16 +818,17 @@
             label15.TabIndex = 18;
             label15.Text = "Insurance on Labs";
             label15.TextAlign = ContentAlignment.MiddleLeft;
+            tweakTooltip.SetToolTip(label15, "If enabled, the Laboratory will have insurance enabled");
             // 
             // tabPage7
             // 
             tabPage7.BackColor = Color.FromArgb(24, 24, 28);
             tabPage7.Controls.Add(valueEFL);
             tabPage7.Controls.Add(label22);
-            tabPage7.Location = new Point(4, 24);
+            tabPage7.Location = new Point(4, 27);
             tabPage7.Name = "tabPage7";
             tabPage7.Padding = new Padding(3);
-            tabPage7.Size = new Size(800, 402);
+            tabPage7.Size = new Size(800, 399);
             tabPage7.TabIndex = 6;
             tabPage7.Text = "Logging";
             // 
@@ -809,6 +855,7 @@
             label22.TabIndex = 4;
             label22.Text = "Enable Full Logging";
             label22.TextAlign = ContentAlignment.MiddleLeft;
+            tweakTooltip.SetToolTip(label22, "If enabled, the server console will log every available adjustment");
             // 
             // panel1
             // 
@@ -837,30 +884,6 @@
             label20.TabIndex = 0;
             label20.Text = "ServerTweaks is not in the `user / mods` folder.\r\n\r\nPlease move `ServerTweaksUI.exe` into the `user / mods / ServerTweaks` folder.";
             label20.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // valueUAC
-            // 
-            valueUAC.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            valueUAC.AutoSize = true;
-            valueUAC.Checked = true;
-            valueUAC.CheckState = CheckState.Checked;
-            valueUAC.Cursor = Cursors.Hand;
-            valueUAC.Location = new Point(445, 96);
-            valueUAC.Name = "valueUAC";
-            valueUAC.Size = new Size(54, 22);
-            valueUAC.TabIndex = 5;
-            valueUAC.Text = "true";
-            valueUAC.UseVisualStyleBackColor = true;
-            valueUAC.CheckedChanged += valueUAC_CheckedChanged;
-            // 
-            // label24
-            // 
-            label24.Location = new Point(24, 96);
-            label24.Name = "label24";
-            label24.Size = new Size(415, 21);
-            label24.TabIndex = 4;
-            label24.Text = "Unlock All Customization";
-            label24.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // mainForm
             // 
@@ -970,5 +993,6 @@
         private Label label23;
         private CheckBox valueUAC;
         private Label label24;
+        private ToolTip tweakTooltip;
     }
 }
